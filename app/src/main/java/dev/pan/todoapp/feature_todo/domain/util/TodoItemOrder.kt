@@ -10,10 +10,9 @@ sealed class TodoItemOrder(
 
     fun copy(sortingDirection: SortingDirection, showArchived: Boolean) : TodoItemOrder{
         return when(this){
-            // FIXME: maybe an error here of return class
             is Title -> Title(sortingDirection, showArchived)
-            is Time -> Title(sortingDirection, showArchived)  // Time?
-            is Completed -> Title(sortingDirection, showArchived) // Completed?
+            is Time -> Time(sortingDirection, showArchived)
+            is Completed -> Completed(sortingDirection, showArchived)
         }
     }
 }
