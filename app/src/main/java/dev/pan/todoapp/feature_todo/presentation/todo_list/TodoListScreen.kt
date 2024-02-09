@@ -19,10 +19,10 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Divider
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -57,6 +57,7 @@ import dev.pan.todoapp.core.util.ContentDescription
 import dev.pan.todoapp.core.util.TodoListStrings
 import dev.pan.todoapp.feature_todo.presentation.todo_list.components.SortingDrawerOptions
 import dev.pan.todoapp.feature_todo.presentation.todo_list.components.TodoItemCard
+import dev.pan.todoapp.feature_todo.presentation.util.Screen
 import kotlinx.coroutines.launch
 
 
@@ -95,7 +96,7 @@ fun TodoListScreen(
         drawerContent = {
             Box(
                 modifier = Modifier.fillMaxWidth(0.65f)
-            ){
+            ) {
                 ModalDrawerSheet {
                     Text(
                         text = TodoListStrings.SORT_BY,
@@ -103,7 +104,7 @@ fun TodoListScreen(
                         fontSize = 34.sp,
                         lineHeight = 38.sp
                     )
-                    Divider()
+                    HorizontalDivider()
                     SortingDrawerOptions(
                         todoItemOrder = state.todoItemOrder,
                         onOrderChange = { order ->
@@ -117,7 +118,9 @@ fun TodoListScreen(
         Scaffold(
             floatingActionButton = {
                 FloatingActionButton(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        navController.navigate(Screen.TodoNewUpdateScreen.route)
+                    },
                     shape = CircleShape,
                     containerColor = MaterialTheme.colorScheme.primary
                 ) {
@@ -186,7 +189,7 @@ fun TodoListScreen(
                             .padding(horizontal = 12.dp)
                             .padding(top = 64.dp)
                     ) {
-                        items(state.todoItems){todo ->
+                        items(state.todoItems) { todo ->
                             TodoItemCard(
                                 todo = todo,
                                 modifier = Modifier
@@ -211,9 +214,9 @@ fun TodoListScreen(
                                     viewModel.onEvent(TodoListEvent.ToggleArchived(todo))
                                 },
                                 onCardClick = {
-//                                    navController.navigate(
-//
-//                                    )
+                                    navController.navigate(
+                                        Screen.TodoNewUpdateScreen.route + "?todoId=${todo.id}"
+                                    )
                                 }
                             )
                             Spacer(modifier = Modifier.height(8.dp))

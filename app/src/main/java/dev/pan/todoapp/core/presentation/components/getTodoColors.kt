@@ -5,6 +5,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import dev.pan.todoapp.feature_todo.domain.model.TodoItem
 
+
+/* We can make calls from res/Colors. This is just experiment if it'll be more useful this way*/
+
 data class TodoItemColors(
     val backgroundColor: Color,
     val textColor: Color,

@@ -14,10 +14,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import dev.pan.todoapp.core.util.ContentDescription
 
+
+/* Separate file, because same buttons used on different screens*/
 @Composable
 fun CompleteButton(
     onCompleteClick: () -> Unit,
@@ -60,9 +61,9 @@ fun EmptyCircle(color: Color, strokeWidth: Float = 9f) {
 
 @Composable
 fun ArchivedButton(
+    modifier: Modifier = Modifier,
     onArchiveClick: () -> Unit,
     color: Color = MaterialTheme.colorScheme.secondary,
-    modifier: Modifier = Modifier
 ){
     IconButton(
         onClick = onArchiveClick,
